@@ -1040,7 +1040,7 @@ header{
 .search-box input::placeholder{
   color:#777;
 }
-//* =========================
+/* =========================
    MOBILE RESPONSIVE
 ========================= */
 @media(max-width:768px){
