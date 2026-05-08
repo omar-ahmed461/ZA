@@ -1235,3 +1235,152 @@ header{
   }
 
 }
+/* MOBILE NAVBAR */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+  color:black;
+}
+
+@media(max-width:768px){
+
+  header{
+    padding:16px;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .nav-left{
+    width:100%;
+    display:none;
+    flex-direction:column;
+    gap:16px;
+    background:white;
+    padding:20px;
+    border-radius:16px;
+  }
+
+  .nav-left.active{
+    display:flex;
+  }
+
+  .logo-wrap{
+    order:-1;
+  }
+
+  .search-box{
+    width:100%;
+  }
+
+  .search-box input{
+    width:100%;
+  }
+
+  .products,
+  .men-products,
+  .women-products{
+    grid-template-columns:repeat(2,1fr);
+    padding:12px;
+  }
+
+  .product img{
+    aspect-ratio:3/4;
+    object-fit:cover;
+  }
+
+}
+/* AI CHAT */
+.ai-chat-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#1f7a5c;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  cursor:pointer;
+  z-index:99999;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.ai-chat-box{
+  position:fixed;
+  bottom:100px;
+  right:25px;
+  width:340px;
+  height:500px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:24px;
+  overflow:hidden;
+  display:none;
+  flex-direction:column;
+  z-index:99999;
+}
+
+.ai-chat-header{
+  background:#1f7a5c;
+  padding:18px;
+  font-weight:700;
+  color:white;
+}
+
+.ai-chat-messages{
+  flex:1;
+  padding:18px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.bot-msg,
+.user-msg{
+  padding:12px 16px;
+  border-radius:16px;
+  max-width:80%;
+  line-height:1.5;
+}
+
+.bot-msg{
+  background:#1c1c1c;
+  color:white;
+}
+
+.user-msg{
+  background:#1f7a5c;
+  color:white;
+  align-self:flex-end;
+}
+
+.ai-chat-input{
+  display:flex;
+  border-top:1px solid #222;
+}
+
+.ai-chat-input input{
+  flex:1;
+  background:#111;
+  border:none;
+  padding:16px;
+  color:white;
+  outline:none;
+}
+
+.ai-chat-input button{
+  width:90px;
+  border:none;
+  background:#1f7a5c;
+  color:white;
+  cursor:pointer;
+}

@@ -35,7 +35,7 @@
 
   <!-- HEADER -->
 
-  <div class="nav-left">
+  <div class="nav-left" id="mobileNav">
     <a href="index.html">Home</a>
     <a href="women.html">Women</a>
     <a href="men.html">Men</a>
@@ -129,8 +129,8 @@
       <button class="add-to-cart">Add to Cart</button>
     </div>
   </div>
-
 </section>
+
 
 <!-- SOCIAL -->
 <section class="social-section">
@@ -160,7 +160,6 @@
   </a>
 
 </div>
-</div>
 </section>
 
 <!-- FOOTER -->
@@ -180,67 +179,229 @@
     <span>© 2026 ZA3TAR</span>
     <span>All rights reserved</span>
   </div>
+<!-- AI CHAT BUTTON -->
+<div class="ai-chat-btn" onclick="toggleChat()">
+  ✦
+</div>
+
+<!-- AI CHAT -->
+<div class="ai-chat-box" id="aiChatBox">
+
+  <div class="ai-chat-header">
+    ZA3TAR AI
+  </div>
+
+  <div class="ai-chat-messages" id="chatMessages">
+
+    <div class="bot-msg">
+      Hey 👋<br>
+      Need help finding a fit?
+    </div>
+
+  </div>
+
+  <div class="ai-chat-input">
+
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Ask ZA3TAR AI..."
+      onkeypress="handleKey(event)"
+    >
+
+    <button onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
+</div>
 </footer>
 <script>
-function toggleMenu() {
-  document.getElementById("mobileNav").classList.toggle("active");
+
+function toggleMenu(){
+
+  document
+    .getElementById("mobileNav")
+    .classList
+    .toggle("active");
+
 }
-	
-</script>
-	<script>
 
-const buttons = document.querySelectorAll('.add-to-cart');
-
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-
-    const product = button.closest('.product');
-
-    const name = product.querySelector('strong').innerText;
-    const category = product.querySelector('p').innerText;
-    const image = product.querySelector('img').src;
-
-    let price = 0;
-
-    // MEN
-    if(name.includes('HOODIE')) price = 1200;
-    else if(name.includes('TEE')) price = 650;
-    else if(name.includes('SHIRT')) price = 850;
-    else if(name.includes('FIT')) price = 900;
-    else if(name.includes('ACCESSORY')) price = 300;
-    else price = 700;
-
-    const item = {
-      name,
-      category,
-      image,
-      price
-    };
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    cart.push(item);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    updateCartCount();
-
-    alert(name + ' added to cart');
-  });
-});
-
+/* CART COUNT */
 function updateCartCount(){
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const counter = document.getElementById('cart-count');
+  let cart =
+    JSON.parse(localStorage.getItem('cart')) || [];
+
+  const counter =
+    document.getElementById('cart-count');
 
   if(counter){
+
     counter.innerText = cart.length;
+
   }
+
 }
 
 updateCartCount();
 
+const API_KEY = "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";
+
+/* CHAT OPEN/CLOSE */
+function toggleChat(){
+
+  const chat =
+    document.getElementById("aiChatBox");
+
+  if(chat.style.display === "flex"){
+
+    chat.style.display = "none";
+
+  } else {
+
+    chat.style.display = "flex";
+
+  }
+
+}
+
+/* ENTER KEY */
+function handleKey(event){
+
+  if(event.key === "Enter"){
+
+    sendMessage();
+
+  }
+
+}
+
+/* SEND MESSAGE */
+
+async function sendMessage(){
+
+  const input =
+    document.getElementById("userInput");
+
+  const messages =
+    document.getElementById("chatMessages");
+
+  const text =
+    input.value.trim();
+
+  if(text === "") return;
+
+  messages.innerHTML += `
+    <div class="user-msg">
+      ${text}
+    </div>
+  `;
+
+  input.value = "";
+
+  messages.innerHTML += `
+    <div class="bot-msg" id="loadingMsg">
+      Thinking...
+    </div>
+  `;
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
+  try{
+
+    const response = await fetch(
+
+      "https://api.openai.com/v1/chat/completions",
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer " + API_KEY
+        },
+
+        body:JSON.stringify({
+
+          model:"gpt-4o-mini",
+
+          messages:[
+
+            {
+              role:"system",
+              content:
+                "You are ZA3TAR AI, a luxury streetwear assistant."
+            },
+
+            {
+              role:"user",
+              content:text
+            }
+
+          ]
+
+        })
+
+      }
+
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+
+    document
+      .getElementById("loadingMsg")
+      .remove();
+
+    if(data.error){
+
+      messages.innerHTML += `
+        <div class="bot-msg">
+          ${data.error.message}
+        </div>
+      `;
+
+      return;
+    }
+
+    const reply =
+      data.choices[0].message.content;
+
+    messages.innerHTML += `
+      <div class="bot-msg">
+        ${reply}
+      </div>
+    `;
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }
+
+  catch(error){
+
+    console.log(error);
+
+    document
+      .getElementById("loadingMsg")
+      .remove();
+
+    messages.innerHTML += `
+      <div class="bot-msg">
+        Connection failed.
+      </div>
+    `;
+
+  }
+
+}
+
 </script>
+
 </body>
 </html>
