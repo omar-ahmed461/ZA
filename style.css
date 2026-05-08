@@ -1040,86 +1040,123 @@ header{
 .search-box input::placeholder{
   color:#777;
 }
-/* =========================
+//* =========================
    MOBILE RESPONSIVE
 ========================= */
-@media(max-width:900px){
+@media(max-width:768px){
+
+  /* BODY */
+  body{
+    overflow-x:hidden;
+  }
 
   /* HEADER */
   header{
     flex-direction:column;
-    gap:20px;
-    padding:20px;
-    text-align:center;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    padding:16px;
   }
 
   .nav-left{
+    display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:12px;
+    gap:10px;
   }
 
   .nav-left a{
-    font-size:12px;
+    font-size:11px;
+    letter-spacing:1px;
   }
 
   .logo-img{
-    width:120px;
-  }
-
-  .cart-btn{
-    width:100%;
-    text-align:center;
+    width:110px;
   }
 
   /* SEARCH */
   .search-box{
     width:100%;
+    display:flex;
+    justify-content:center;
   }
 
   .search-box input{
-    width:100%;
-    max-width:320px;
+    width:90%;
+    max-width:300px;
+  }
+
+  /* CART */
+  .cart-btn{
+    width:auto;
+    padding:10px 18px;
+    font-size:12px;
   }
 
   /* HERO */
   .hero{
-    height:80vh;
+    height:75vh;
     padding:20px;
   }
 
   .hero h1{
-    font-size:60px;
+    font-size:52px;
     line-height:0.9;
   }
 
   .hero-sub{
-    font-size:13px;
+    font-size:12px;
+    letter-spacing:2px;
   }
 
   .hero-socials{
     flex-wrap:wrap;
-    gap:20px;
+    gap:18px;
+  }
+
+  /* SECTION HEADER */
+  .section-header{
+    padding:40px 20px 20px;
+    text-align:center;
+  }
+
+  .section-header h1{
+    font-size:42px;
   }
 
   /* PRODUCTS */
   .products,
   .men-products,
   .women-products{
-    grid-template-columns:1fr 1fr;
-    padding:20px;
-    gap:12px;
+    grid-template-columns:1fr;
+    padding:16px;
+    gap:16px;
+  }
+
+  .product{
+    aspect-ratio:auto;
+  }
+
+  .product img{
+    height:auto;
+    max-height:500px;
+    object-fit:cover;
+  }
+
+  .product-info{
+    padding:14px;
   }
 
   .product-info strong{
-    font-size:16px;
+    font-size:18px;
   }
 
   /* PRODUCT PAGE */
   .single-product{
     flex-direction:column;
-    padding:40px 20px;
-    gap:40px;
+    padding:30px 20px;
+    gap:30px;
   }
 
   .single-image{
@@ -1127,6 +1164,7 @@ header{
   }
 
   .single-image img{
+    width:100%;
     max-width:100%;
   }
 
@@ -1135,27 +1173,37 @@ header{
   }
 
   .single-info h1{
-    font-size:52px;
+    font-size:42px;
+  }
+
+  .price{
+    font-size:26px;
   }
 
   /* ABOUT */
+  .about-section{
+    padding:60px 20px;
+  }
+
   .about-grid{
     grid-template-columns:1fr;
-    gap:40px;
+    gap:30px;
   }
 
   .about-text h2{
-    font-size:52px;
+    font-size:46px;
   }
 
   /* CHECKOUT */
   .checkout{
     padding:20px;
+    margin:40px auto;
   }
 
   .checkout-item{
     flex-direction:column;
     align-items:flex-start;
+    gap:20px;
   }
 
   .checkout-left{
@@ -1168,30 +1216,22 @@ header{
     max-width:220px;
   }
 
+  /* PAYMENT */
+  .payment-content{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
   /* FOOTER */
+  footer{
+    padding:40px 20px;
+  }
+
   .footer-top,
   .footer-bottom{
     flex-direction:column;
     text-align:center;
-  }
-
-}
-
-/* EXTRA SMALL */
-@media(max-width:600px){
-
-  .products,
-  .men-products,
-  .women-products{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:42px;
-  }
-
-  .single-info h1{
-    font-size:40px;
+    gap:20px;
   }
 
 }
