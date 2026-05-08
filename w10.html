@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PRODUCT NAME - ZA3TAR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+/* PAGE */
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:'Syne', sans-serif;
+}
+
+/* HEADER */
+.product-header{
+  padding:30px 8%;
+}
+
+.back-btn{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+/* PRODUCT */
+.single-product{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:80px;
+  padding:60px 8%;
+  flex-wrap:wrap;
+}
+
+/* IMAGE */
+.single-image{
+  width:420px;
+  display:flex;
+  justify-content:center;
+}
+
+.single-image img{
+  width:100%;
+  max-width:420px;
+  border-radius:20px;
+  object-fit:cover;
+}
+
+/* INFO */
+.single-info{
+  max-width:500px;
+}
+
+.product-category{
+  font-size:13px;
+  letter-spacing:3px;
+  color:#888;
+  margin-bottom:15px;
+}
+
+.single-info h1{
+  font-family:'Bebas Neue';
+  font-size:80px;
+  line-height:0.9;
+  margin-bottom:20px;
+}
+
+.price{
+  font-size:32px;
+  margin-bottom:25px;
+}
+
+.description{
+  color:#aaa;
+  line-height:1.8;
+  margin-bottom:35px;
+}
+
+/* SIZE */
+.size-title{
+  margin-bottom:15px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.sizes{
+  display:flex;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.size-btn{
+  width:55px;
+  height:55px;
+  background:#111;
+  border:1px solid #333;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:700;
+}
+
+.size-btn:hover{
+  background:white;
+  color:black;
+}
+
+/* QTY */
+.qty-box{
+  margin-bottom:35px;
+}
+
+.qty-box input{
+  width:90px;
+  padding:14px;
+  background:#111;
+  border:1px solid #333;
+  color:white;
+  font-size:16px;
+}
+
+/* BUTTON */
+.add-cart-btn{
+  width:100%;
+  padding:18px;
+  border:none;
+  background:white;
+  color:black;
+  font-weight:800;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.add-cart-btn:hover{
+  opacity:0.8;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .single-product{
+    gap:40px;
+    padding:40px 20px;
+  }
+
+  .single-info h1{
+    font-size:55px;
+  }
+
+  .single-image{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="product-header">
+
+  <a href="women.html" class="back-btn">
+    ← BACK TO WOMEN
+  </a>
+
+</header>
+
+<!-- PRODUCT -->
+<section class="single-product">
+
+  <!-- IMAGE -->
+  <div class="single-image">
+
+    <!-- CHANGE IMAGE -->
+    <img src="women/10.jpg" alt="Product">
+
+  </div>
+
+  <!-- INFO -->
+  <div class="single-info">
+
+    <!-- CATEGORY -->
+   <p class="product-category">
+  ZA3TAR / WOMEN
+</p>
+
+<h1>Green SIGNAL</h1>
+
+<div class="price">
+  840 EGP
+</div>
+
+<p class="description">
+  Relaxed oversized city fit inspired by subway street culture.
+  Features layered casual styling with bold yellow accent details.
+</p>
+
+    <!-- SIZE -->
+    <div class="size-title">
+      SELECT SIZE
+    </div>
+
+    <div class="sizes">
+
+      <button class="size-btn">S</button>
+      <button class="size-btn">M</button>
+      <button class="size-btn">L</button>
+
+    </div>
+
+    <!-- QUANTITY -->
+    <div class="qty-box">
+
+      <div class="size-title">
+        QUANTITY
+      </div>
+
+      <input type="number" value="1" min="1" id="qty">
+
+    </div>
+
+    <!-- BUTTON -->
+    <button class="add-cart-btn" onclick="addToCart()">
+      ADD TO CART
+    </button>
+
+  </div>
+
+</section>
+
+<script>
+
+let selectedSize = "M";
+
+const sizeButtons = document.querySelectorAll(".size-btn");
+
+sizeButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    sizeButtons.forEach(btn => {
+      btn.style.background = "#111";
+      btn.style.color = "white";
+    });
+
+    button.style.background = "white";
+    button.style.color = "black";
+
+    selectedSize = button.innerText;
+
+  });
+
+});
+
+function addToCart(){
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const product = {
+
+    name: "STREET FIT",
+    price: 850,
+    size: selectedSize,
+    quantity: document.getElementById("qty").value,
+    image: "women/10.jpg"
+
+  };
+
+  cart.push(product);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+</script>
+
+</body>
+</html>

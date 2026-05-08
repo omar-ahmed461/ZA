@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout - ZA3TAR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a href="index.html" class="logo-wrap">
+  <img class="logo-img" src="logo.png" alt="ZA3TAR Logo">
+</a>
+
+<section class="checkout">
+
+  <h1>Checkout</h1>
+
+  <!-- CART ITEMS -->
+  <div id="checkoutItems"></div>
+
+  <h3>Total: <span id="totalPrice">0</span> EGP</h3>
+
+  <!-- FORM -->
+<form id="checkoutForm"
+      action="https://formsubmit.co/ohanafy61@gmail.com"
+      method="POST">
+
+  <input type="hidden" name="_captcha" value="false">
+
+  <input type="hidden"
+         name="_subject"
+         value="New ZA3TAR Order">
+
+  <input type="hidden"
+         name="_autoresponse"
+         value="Your ZA3TAR order has been received successfully. We’ll contact you soon.">
+
+  <input type="hidden"
+         name="_next"
+         value="https://google.com">
+
+  <input type="hidden" name="_captcha" value="false">
+
+  <input type="hidden"
+         name="_subject"
+         value="New ZA3TAR Order">
+
+  <input type="hidden"
+         name="_autoresponse"
+         value="Your ZA3TAR order has been received successfully. We’ll contact you soon.">
+
+  <input type="text"
+         name="name"
+         placeholder="Full Name"
+         required>
+
+  <input type="email"
+         name="email"
+         placeholder="Email"
+         required>
+    <input type="text" name="phone" placeholder="Phone" required>
+
+    <textarea name="address" placeholder="Address" required></textarea>
+
+    <!-- PAYMENT METHODS -->
+    <div class="payment-methods">
+
+      <h3>Payment Method</h3>
+
+      <!-- COD -->
+      <label class="payment-card">
+
+        <input type="radio"
+               name="payment"
+               value="cod"
+               checked
+               onchange="selectPayment('cod')">
+
+        <div class="payment-content">
+
+          <img src="cod.jpg">
+
+          <div>
+            <h4>Cash on Delivery</h4>
+            <p>+50 EGP delivery handling fee</p>
+          </div>
+
+        </div>
+
+      </label>
+
+      <!-- VODAFONE -->
+      <label class="payment-card">
+
+        <input type="radio"
+               name="payment"
+               value="vodafone"
+               onchange="selectPayment('vodafone')">
+
+        <div class="payment-content">
+
+          <img src="R.png">
+
+          <div>
+            <h4>Vodafone Cash</h4>
+            <p>Pay using Vodafone wallet</p>
+          </div>
+
+        </div>
+
+      </label>
+
+      <!-- CARD -->
+      <label class="payment-card">
+
+        <input type="radio"
+               name="payment"
+               value="card"
+               onchange="selectPayment('card')">
+
+        <div class="payment-content">
+
+          <img src="vm.png">
+
+          <div>
+            <h4>Credit Card</h4>
+            <p>Visa / Mastercard accepted</p>
+          </div>
+
+        </div>
+
+      </label>
+
+    </div>
+
+    <!-- DYNAMIC PAYMENT AREA -->
+    <div id="paymentDetails"></div>
+
+    <!-- hidden order -->
+    <input type="hidden" name="order" id="orderData">
+
+    <button type="submit">Place Order</button>
+
+  </form>
+
+</section>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+const container = document.getElementById('checkoutItems');
+const totalElement = document.getElementById('totalPrice');
+const orderInput = document.getElementById('orderData');
+
+let baseTotal = 0;
+
+function loadCart(){
+
+  container.innerHTML = '';
+
+  let total = 0;
+  let orderText = '';
+
+  if(cart.length === 0){
+
+    container.innerHTML = '<h2>Your cart is empty</h2>';
+
+    totalElement.innerText = '0';
+
+    return;
+  }
+
+  cart.forEach((item, index) => {
+
+    if(!item.quantity){
+      item.quantity = 1;
+    }
+
+    const itemTotal = item.price * item.quantity;
+
+    total += itemTotal;
+
+    orderText += `${item.name} x${item.quantity} - ${itemTotal} EGP\n`;
+
+    container.innerHTML += `
+
+      <div class="checkout-item">
+
+        <div class="checkout-left">
+
+          <img src="${item.image}">
+
+          <div>
+
+            <h3>${item.name}</h3>
+
+            <p>${item.category}</p>
+
+            <strong>${itemTotal} EGP</strong>
+
+            <div class="qty-controls">
+
+              <button class="qty-btn"
+                      onclick="decreaseQty(${index})">
+
+                −
+
+              </button>
+
+              <span>${item.quantity}</span>
+
+              <button class="qty-btn"
+                      onclick="increaseQty(${index})">
+
+                +
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="remove-btn"
+                onclick="removeItem(${index})">
+
+          Remove
+
+        </button>
+
+      </div>
+    `;
+  });
+
+  baseTotal = total;
+
+  totalElement.innerText = total + 50;
+
+  orderInput.value = orderText;
+}
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  loadCart();
+}
+
+function increaseQty(index){
+
+  cart[index].quantity++;
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  loadCart();
+}
+
+function decreaseQty(index){
+
+  if(cart[index].quantity > 1){
+
+    cart[index].quantity--;
+
+  } else {
+
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  loadCart();
+}
+
+function selectPayment(method){
+
+  const details = document.getElementById("paymentDetails");
+
+  // COD
+  if(method === "cod"){
+
+    totalElement.innerText = baseTotal + 50;
+
+    details.innerHTML = `
+
+      <div class="payment-extra">
+
+        <h4>Cash on Delivery Fee</h4>
+
+        <p>
+          A 50 EGP handling fee is added for COD orders.
+        </p>
+
+      </div>
+    `;
+  }
+
+  // VODAFONE
+  else if(method === "vodafone"){
+
+    totalElement.innerText = baseTotal;
+
+    details.innerHTML = `
+
+      <div class="payment-extra">
+
+        <h4>Vodafone Cash Payment</h4>
+
+        <input type="text"
+               placeholder="Vodafone Number">
+
+        <input type="text"
+               placeholder="Transaction ID">
+
+        <p class="payment-note">
+          Send payment to: 01012345678
+        </p>
+
+      </div>
+    `;
+  }
+
+  // CARD
+  else if(method === "card"){
+
+    totalElement.innerText = baseTotal;
+
+    details.innerHTML = `
+
+      <div class="payment-extra">
+
+        <h4>Card Details</h4>
+
+        <input type="text"
+               placeholder="Card Number">
+
+        <div class="card-row">
+
+          <input type="text"
+                 placeholder="MM/YY">
+
+          <input type="text"
+                 placeholder="CVV">
+
+        </div>
+
+        <input type="text"
+               placeholder="Card Holder Name">
+
+      </div>
+    `;
+  }
+}
+
+
+loadCart();
+
+selectPayment('cod');
+</script>
+
+</body>
+</html>

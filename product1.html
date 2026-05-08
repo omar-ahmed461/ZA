@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PRODUCT NAME - ZA3TAR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+/* PAGE */
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:'Syne', sans-serif;
+}
+
+/* HEADER */
+.product-header{
+  padding:30px 8%;
+}
+
+.back-btn{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+/* PRODUCT SECTION */
+.single-product{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:80px;
+  padding:40px 8% 100px;
+  flex-wrap:wrap;
+}
+
+/*/* IMAGE */
+.single-image{
+  width:350px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.single-image img{
+  width:100%;
+  max-width:350px;
+  height:auto;
+  border-radius:20px;
+  object-fit:cover;
+}
+
+/* INFO */
+.single-info{
+  flex:1;
+  min-width:320px;
+  max-width:500px;
+}
+
+.product-category{
+  font-size:14px;
+  opacity:0.7;
+  letter-spacing:2px;
+}
+
+.single-info h1{
+  font-size:70px;
+  margin:10px 0;
+  font-family:'Bebas Neue', sans-serif;
+  letter-spacing:2px;
+}
+
+.price{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.description{
+  line-height:1.7;
+  opacity:0.85;
+  margin-bottom:30px;
+}
+
+/* SIZES */
+.size-title{
+  margin-bottom:15px;
+  font-weight:bold;
+}
+
+.sizes{
+  display:flex;
+  gap:12px;
+  margin-bottom:30px;
+}
+
+.size-btn{
+  width:55px;
+  height:55px;
+  border:1px solid #333;
+  background:#111;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.size-btn:hover{
+  background:white;
+  color:black;
+}
+
+/* QUANTITY */
+.qty-box{
+  margin-bottom:30px;
+}
+
+.qty-box input{
+  width:80px;
+  padding:12px;
+  background:#111;
+  border:1px solid #333;
+  color:white;
+  font-size:16px;
+}
+
+/* BUTTON */
+.add-cart-btn{
+  width:100%;
+  padding:18px;
+  border:none;
+  background:white;
+  color:black;
+  font-weight:800;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.add-cart-btn:hover{
+  opacity:0.8;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .single-product{
+    padding-top:20px;
+    gap:40px;
+  }
+
+  .single-info h1{
+    font-size:50px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="product-header">
+
+  <a href="men.html" class="back-btn">
+    ← BACK TO SHOP
+  </a>
+
+</header>
+
+<!-- PRODUCT -->
+<section class="single-product">
+
+  <!-- IMAGE -->
+  <div class="single-image">
+
+    <!-- CHANGE IMAGE -->
+    <img src="men/1.jpg" alt="Product">
+
+  </div>
+
+  <!-- INFO -->
+  <div class="single-info">
+
+    <!-- CHANGE CATEGORY -->
+   <p class="product-category">
+  ZA3TAR / MEN
+</p>
+
+<h1>ASH PLAID FIT</h1>
+
+<div class="price">
+  750 EGP
+</div>
+
+<p class="description">
+  Relaxed plaid streetwear fit inspired by underground city fashion.
+  Lightweight layering piece with oversized silhouette and clean neutral tones.
+</p>
+
+    <!-- SIZES -->
+    <div class="size-title">
+      SELECT SIZE
+    </div>
+
+    <div class="sizes">
+
+      <button class="size-btn">S</button>
+      <button class="size-btn">M</button>
+      <button class="size-btn">L</button>
+      <button class="size-btn">XL</button>
+
+    </div>
+
+    <!-- QUANTITY -->
+    <div class="qty-box">
+
+      <div class="size-title">
+        QUANTITY
+      </div>
+
+      <input type="number" value="1" min="1" id="qty">
+
+    </div>
+
+    <!-- BUTTON -->
+    <button class="add-cart-btn" onclick="addToCart()">
+      ADD TO CART
+    </button>
+
+  </div>
+
+</section>
+
+<script>
+
+let selectedSize = "M";
+
+const sizeButtons = document.querySelectorAll(".size-btn");
+
+sizeButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    sizeButtons.forEach(btn => {
+      btn.style.background = "#111";
+      btn.style.color = "white";
+    });
+
+    button.style.background = "white";
+    button.style.color = "black";
+
+    selectedSize = button.innerText;
+
+  });
+
+});
+
+function addToCart(){
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const product = {
+
+    name: "CORE TEE",
+    price: 450,
+    size: selectedSize,
+    quantity: document.getElementById("qty").value,
+    image: "men/1.jpg"
+
+  };
+
+  cart.push(product);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+}
+
+</script>
+
+</body>
+</html>

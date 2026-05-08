@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Men - ZA3TAR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+   <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="women.html">Women</a>
+    <a href="men.html">Men</a>
+	<a href="acc.html">Accessories</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+<div class="search-box">
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search products..."
+    onkeyup="searchProducts()"
+  >
+
+</div>
+<a href="checkout.html" class="cart-btn">
+  Cart (<span id="cart-count">0</span>)
+</a>
+<a href="index.html" class="logo-wrap">
+  <img class="logo-img" src="logo.png" alt="ZA3TAR Logo">
+</a>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="section-header">
+  <h1>Men</h1>
+  <span>Streetwear Collection</span>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products men-products">
+
+  <!-- MEN 1 -->
+ <a href="product1.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/1.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>ASH PLAID FIT</strong>
+    </div>
+
+  </div>
+
+</a>
+
+  <!-- MEN 2 -->
+ <a href="product2.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/2.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>METRO LEATHER</strong>
+    </div>
+
+  </div>
+
+</a>
+
+  <!-- MEN 3 -->
+ <a href="product3.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/3.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>NAVY CHAOS HOODIE</strong>
+    </div>
+
+  </div>
+
+</a>
+
+  <!-- MEN 4 -->
+ <a href="product4.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/4.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>WASHED SHADOW ZIP</strong>
+    </div>
+
+  </div>
+
+</a>
+  <!-- MEN 5 -->
+<a href="product5.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/5.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>RACING DISTRICT</strong>
+
+    </div>
+
+  </div>
+
+</a>
+
+  <!-- MEN 6 -->
+<a href="product6.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/6.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>SAND CHECK SHIRT</strong>
+
+    </div>
+
+  </div>
+
+</a>
+
+  <!-- MEN 7 -->
+<a href="product7.html" class="product-link">
+
+  <div class="product">
+
+    <img src="men/7.jpg">
+
+    <div class="product-info">
+      <p>Men</p>
+      <strong>BROWN STATIC JACKET</strong>
+
+    </div>
+
+  </div>
+
+</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-name">ZA3<span>TAR</span></div>
+      <div class="footer-tagline">No Roles Just Street</div>
+    </div>
+
+    <div class="footer-socials">
+      <a href="#" class="ig">Instagram</a>
+      <a href="#" class="tt">TikTok</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 ZA3TAR</span>
+    <span>All rights reserved</span>
+  </div>
+
+</footer>
+<script>
+
+/* CART COUNT */
+function updateCartCount(){
+
+  let cart =
+    JSON.parse(localStorage.getItem('cart')) || [];
+
+  const counter =
+    document.getElementById('cart-count');
+
+  if(counter){
+
+    counter.innerText = cart.length;
+
+  }
+
+}
+
+updateCartCount();
+
+/* SEARCH */
+function searchProducts(){
+
+  let input =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  let productLinks =
+    document.querySelectorAll(".product-link");
+
+  productLinks.forEach(link => {
+
+    let text =
+      link.innerText.toLowerCase();
+
+    if(text.includes(input)){
+
+      link.style.display = "block";
+
+    } else {
+
+      link.style.display = "none";
+
+    }
+
+  });
+
+}
+
+</script>
+</body>
+</html>

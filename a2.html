@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ACCESSORY NAME - ZA3TAR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+/* PAGE */
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:'Syne', sans-serif;
+}
+
+/* HEADER */
+.product-header{
+  padding:30px 8%;
+}
+
+.back-btn{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+/* PRODUCT */
+.single-product{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:80px;
+  padding:60px 8%;
+  flex-wrap:wrap;
+}
+
+/* IMAGE */
+.single-image{
+  width:420px;
+  display:flex;
+  justify-content:center;
+}
+
+.single-image img{
+  width:100%;
+  max-width:420px;
+  border-radius:20px;
+  object-fit:cover;
+}
+
+/* INFO */
+.single-info{
+  max-width:500px;
+}
+
+.product-category{
+  font-size:13px;
+  letter-spacing:3px;
+  color:#888;
+  margin-bottom:15px;
+}
+
+.single-info h1{
+  font-family:'Bebas Neue';
+  font-size:80px;
+  line-height:0.9;
+  margin-bottom:20px;
+}
+
+.price{
+  font-size:32px;
+  margin-bottom:25px;
+}
+
+.description{
+  color:#aaa;
+  line-height:1.8;
+  margin-bottom:35px;
+}
+
+/* COLORS */
+.color-title{
+  margin-bottom:15px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.colors{
+  display:flex;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.color-btn{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:2px solid #333;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.color-btn:hover{
+  transform:scale(1.08);
+  border-color:white;
+}
+
+/* QTY */
+.qty-box{
+  margin-bottom:35px;
+}
+
+.qty-box input{
+  width:90px;
+  padding:14px;
+  background:#111;
+  border:1px solid #333;
+  color:white;
+  font-size:16px;
+}
+
+/* BUTTON */
+.add-cart-btn{
+  width:100%;
+  padding:18px;
+  border:none;
+  background:white;
+  color:black;
+  font-weight:800;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.add-cart-btn:hover{
+  opacity:0.8;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .single-product{
+    gap:40px;
+    padding:40px 20px;
+  }
+
+  .single-info h1{
+    font-size:55px;
+  }
+
+  .single-image{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="product-header">
+
+  <a href="acc.html" class="back-btn">
+    ← BACK TO ACCESSORIES
+  </a>
+
+</header>
+
+<!-- PRODUCT -->
+<section class="single-product">
+
+  <!-- IMAGE -->
+  <div class="single-image">
+
+    <!-- CHANGE IMAGE -->
+    <img src="acc/2.jpg" alt="Accessory">
+
+  </div>
+
+  <!-- INFO -->
+  <div class="single-info">
+
+   <p class="product-category">
+  ZA3TAR / ACCESSORIES
+</p>
+
+<h1>FLAME VETERAN CAP</h1>
+
+<div class="price">
+  520 EGP
+</div>
+
+<p class="description">
+  Distressed washed cap inspired by underground racing culture.
+  Features oversized embroidered flame detailing and faded textures.
+</p>
+
+    <!-- COLORS -->
+    <div class="color-title">
+      SELECT COLOR
+    </div>
+
+    <div class="colors">
+
+      <button class="color-btn" style="background:silver;"></button>
+
+      <button class="color-btn" style="background:black;"></button>
+
+      <button class="color-btn" style="background:gray;"></button>
+
+    </div>
+
+    <!-- QUANTITY -->
+    <div class="qty-box">
+
+      <div class="color-title">
+        QUANTITY
+      </div>
+
+      <input type="number" value="1" min="1" id="qty">
+
+    </div>
+
+    <!-- BUTTON -->
+    <button class="add-cart-btn" onclick="addToCart()">
+      ADD TO CART
+    </button>
+
+  </div>
+
+</section>
+
+<script>
+
+let selectedColor = "Silver";
+
+const colorButtons = document.querySelectorAll(".color-btn");
+
+colorButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    colorButtons.forEach(btn => {
+      btn.style.borderColor = "#333";
+    });
+
+    button.style.borderColor = "white";
+
+    selectedColor = button.style.background;
+
+  });
+
+});
+
+function addToCart(){
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const product = {
+
+    name: "VOID CHAIN SET",
+    price: 420,
+    color: selectedColor,
+    quantity: document.getElementById("qty").value,
+    image: "acc/2.jpg"
+
+  };
+
+  cart.push(product);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+}
+
+</script>
+
+</body>
+</html>
