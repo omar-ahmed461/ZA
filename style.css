@@ -1040,3 +1040,158 @@ header{
 .search-box input::placeholder{
   color:#777;
 }
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media(max-width:900px){
+
+  /* HEADER */
+  header{
+    flex-direction:column;
+    gap:20px;
+    padding:20px;
+    text-align:center;
+  }
+
+  .nav-left{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .nav-left a{
+    font-size:12px;
+  }
+
+  .logo-img{
+    width:120px;
+  }
+
+  .cart-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* SEARCH */
+  .search-box{
+    width:100%;
+  }
+
+  .search-box input{
+    width:100%;
+    max-width:320px;
+  }
+
+  /* HERO */
+  .hero{
+    height:80vh;
+    padding:20px;
+  }
+
+  .hero h1{
+    font-size:60px;
+    line-height:0.9;
+  }
+
+  .hero-sub{
+    font-size:13px;
+  }
+
+  .hero-socials{
+    flex-wrap:wrap;
+    gap:20px;
+  }
+
+  /* PRODUCTS */
+  .products,
+  .men-products,
+  .women-products{
+    grid-template-columns:1fr 1fr;
+    padding:20px;
+    gap:12px;
+  }
+
+  .product-info strong{
+    font-size:16px;
+  }
+
+  /* PRODUCT PAGE */
+  .single-product{
+    flex-direction:column;
+    padding:40px 20px;
+    gap:40px;
+  }
+
+  .single-image{
+    width:100%;
+  }
+
+  .single-image img{
+    max-width:100%;
+  }
+
+  .single-info{
+    width:100%;
+  }
+
+  .single-info h1{
+    font-size:52px;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .about-text h2{
+    font-size:52px;
+  }
+
+  /* CHECKOUT */
+  .checkout{
+    padding:20px;
+  }
+
+  .checkout-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .checkout-left{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .checkout-left img{
+    width:100%;
+    max-width:220px;
+  }
+
+  /* FOOTER */
+  .footer-top,
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
+
+/* EXTRA SMALL */
+@media(max-width:600px){
+
+  .products,
+  .men-products,
+  .women-products{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .single-info h1{
+    font-size:40px;
+  }
+
+}
