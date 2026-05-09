@@ -1176,3 +1176,7 @@ header{
   }
 
 }
+.hero-cta{
+  display:inline-block;
+  text-decoration:none;
+}
