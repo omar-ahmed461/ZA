@@ -1144,24 +1144,27 @@ header{
   }
 
   .about-grid{
-    grid-template-columns:1fr;
-    gap:40px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
   }
 
   .about-image{
     width:100%;
-    padding:20px;
+    padding:30px;
+    border-radius:24px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 
   .about-logo{
     width:100%;
     max-width:220px;
-    margin:auto;
+    height:auto;
+    object-fit:contain;
     display:block;
-  }
-
-  .about-text{
-    width:100%;
   }
 
   .about-text h2{
