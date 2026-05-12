@@ -199,32 +199,77 @@ h1{
 /* MOBILE */
 @media(max-width:600px){
 
+  body{
+    padding:20px 10px;
+    justify-content:flex-start;
+  }
+
   h1{
-    font-size:60px;
+    font-size:48px;
+    letter-spacing:3px;
+    margin-top:10px;
+    margin-bottom:20px;
   }
 
   .wheel-wrapper{
-    width:320px;
-    height:320px;
+    width:90vw;
+    height:90vw;
+    max-width:340px;
+    max-height:340px;
+  }
+
+  .pointer{
+    font-size:28px;
+    top:-18px;
+  }
+
+  .wheel::after{
+    width:110px;
+    height:110px;
+    font-size:13px;
+    letter-spacing:1px;
   }
 
   .label{
-    font-size:10px;
-    width:90px;
-    margin-left:-45px;
+    font-size:9px;
+    width:80px;
+    margin-left:-40px;
+    line-height:1.2;
   }
 
+  /* reposition labels for smaller wheel */
+  .wheel .label:nth-child(1){ transform: rotate(22.5deg) translateY(-122px); }
+  .wheel .label:nth-child(2){ transform: rotate(67.5deg) translateY(-122px); }
+  .wheel .label:nth-child(3){ transform: rotate(112.5deg) translateY(-122px); }
+  .wheel .label:nth-child(4){ transform: rotate(157.5deg) translateY(-122px); }
+  .wheel .label:nth-child(5){ transform: rotate(202.5deg) translateY(-122px); }
+  .wheel .label:nth-child(6){ transform: rotate(247.5deg) translateY(-122px); }
+  .wheel .label:nth-child(7){ transform: rotate(292.5deg) translateY(-122px); }
+  .wheel .label:nth-child(8){ transform: rotate(337.5deg) translateY(-122px); }
+
   .spin-btn{
-    padding:16px 40px;
-    font-size:12px;
+    width:85%;
+    max-width:280px;
+    padding:16px 20px;
+    font-size:13px;
+    letter-spacing:3px;
+    margin-top:25px;
   }
 
   #result{
-    font-size:20px;
+    font-size:18px;
+    padding:0 10px;
+    line-height:1.4;
+  }
+
+  .reward-list{
+    font-size:10px;
+    letter-spacing:2px;
+    line-height:1.8;
+    padding:0 15px;
   }
 
 }
-
 </style>
 </head>
 
