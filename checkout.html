@@ -40,7 +40,7 @@
 
   <input type="hidden"
          name="_next"
-         value="https://google.com">
+         value="https://omar-ahmed461.github.io/ZA/">
 
   <input type="hidden" name="_captcha" value="false">
 
@@ -140,10 +140,14 @@
     <div id="paymentDetails"></div>
 
     <!-- hidden order -->
-    <input type="hidden" name="order" id="orderData">
+<!-- hidden order -->
+<input type="hidden" name="order" id="orderData">
 
-    <button type="submit">Place Order</button>
+<a href="game.html?return=checkout.html" class="game-btn">
+  PLAY & WIN DISCOUNT
+</a>
 
+<button type="submit">Place Order</button>
   </form>
 
 </section>
@@ -362,6 +366,61 @@ function selectPayment(method){
 loadCart();
 
 selectPayment('cod');
+
+const reward = localStorage.getItem("reward");
+
+if(reward){
+
+  const rewardBox = document.createElement("div");
+
+  let finalTotal = baseTotal;
+
+  let rewardText = reward;
+
+  // 10% OFF
+  if(reward.includes("10%")){
+
+    finalTotal = baseTotal - (baseTotal * 0.10);
+
+    rewardText += "<br>10% discount applied!";
+  }
+
+  // 20% OFF
+  else if(reward.includes("20%")){
+
+    finalTotal = baseTotal - (baseTotal * 0.20);
+
+    rewardText += "<br>20% discount applied!";
+  }
+
+  // 30% OFF
+  else if(reward.includes("30%")){
+
+    finalTotal = baseTotal - (baseTotal * 0.30);
+
+    rewardText += "<br>30% discount applied!";
+  }
+
+  // update total
+  totalElement.innerText = Math.round(finalTotal);
+
+  rewardBox.innerHTML = `
+    <div style="
+      background:#0f3d2e;
+      color:white;
+      padding:15px;
+      margin-top:20px;
+      font-weight:800;
+      letter-spacing:1px;
+      text-align:center;
+    ">
+      🎉 YOUR REWARD <br><br>
+      ${rewardText}
+    </div>
+  `;
+
+  document.querySelector(".checkout").prepend(rewardBox);
+}
 </script>
 
 </body>

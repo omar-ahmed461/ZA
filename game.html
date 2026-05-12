@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spin & Win - ZA3TAR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* BASE */
+body{
+  margin:0;
+  font-family:"Syne",sans-serif;
+  background:#0a0a0a;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* TITLE */
+h1{
+  font-family:"Bebas Neue";
+  font-size:95px;
+  margin-top:20px;
+  margin-bottom:20px;
+  letter-spacing:6px;
+  line-height:1;
+}
+
+/* WHEEL CONTAINER */
+.wheel-wrapper{
+  position:relative;
+  margin:20px auto;
+  width:450px;
+  height:450px;
+}
+
+/* POINTER */
+.pointer{
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:38px;
+  z-index:20;
+  color:white;
+  text-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+/* WHEEL */
+.wheel{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:8px solid #111;
+  position:relative;
+  overflow:hidden;
+
+  transition:transform 4s cubic-bezier(0.17,0.67,0.18,0.99);
+
+  background:conic-gradient(
+    #0f3d2e 0deg 45deg,
+    #111 45deg 90deg,
+    #1f7a5c 90deg 135deg,
+    #111 135deg 180deg,
+    #0f3d2e 180deg 225deg,
+    #111 225deg 270deg,
+    #1f7a5c 270deg 315deg,
+    #111 315deg 360deg
+  );
+
+  box-shadow:
+    0 0 60px rgba(31,122,92,0.25),
+    inset 0 0 40px rgba(255,255,255,0.05);
+}
+
+/* CENTER CIRCLE */
+.wheel::after{
+  content:"ZA3TAR";
+  position:absolute;
+
+  width:145px;
+  height:145px;
+
+  background:#0a0a0a;
+  border:5px solid #1f7a5c;
+  border-radius:50%;
+
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:2px;
+
+  z-index:5;
+
+  box-shadow:0 0 25px rgba(31,122,92,0.4);
+}
+
+/* LABELS */
+.label{
+  position:absolute;
+  top:50%;
+  left:50%;
+
+  width:120px;
+  margin-left:-60px;
+
+  text-align:center;
+
+  transform-origin:center;
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1px;
+
+  color:white;
+
+  text-shadow:
+    0 0 10px rgba(0,0,0,0.9),
+    0 0 15px rgba(0,0,0,0.7);
+}
+
+/* BUTTON */
+.spin-btn{
+  margin-top:35px;
+
+  padding:18px 55px;
+
+  background:#0f3d2e;
+
+  border:none;
+
+  color:white;
+
+  font-size:14px;
+  font-weight:800;
+
+  letter-spacing:5px;
+
+  cursor:pointer;
+
+  transition:0.3s ease;
+
+  box-shadow:
+    0 10px 30px rgba(31,122,92,0.2);
+}
+
+.spin-btn:hover{
+  background:#1f7a5c;
+  transform:scale(1.07);
+}
+
+/* RESULT */
+#result{
+  margin-top:35px;
+
+  font-size:26px;
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  min-height:60px;
+
+  line-height:1.5;
+}
+
+/* REWARD TEXT */
+.reward-list{
+  margin-top:35px;
+
+  color:#666;
+
+  font-size:12px;
+
+  letter-spacing:3px;
+
+  line-height:2;
+
+  max-width:700px;
+
+  padding:0 20px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+  h1{
+    font-size:60px;
+  }
+
+  .wheel-wrapper{
+    width:320px;
+    height:320px;
+  }
+
+  .label{
+    font-size:10px;
+    width:90px;
+    margin-left:-45px;
+  }
+
+  .spin-btn{
+    padding:16px 40px;
+    font-size:12px;
+  }
+
+  #result{
+    font-size:20px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>SPIN & WIN</h1>
+
+<div class="wheel-wrapper">
+
+  <div class="pointer">▼</div>
+
+  <div class="wheel" id="wheel">
+
+    <div class="label" style="transform: rotate(22.5deg) translateY(-170px);">
+      10% OFF
+    </div>
+
+    <div class="label" style="transform: rotate(67.5deg) translateY(-170px);">
+      MYSTERY KEYCHAIN
+    </div>
+
+    <div class="label" style="transform: rotate(112.5deg) translateY(-170px);">
+     30% OFF
+    </div>
+
+    <div class="label" style="transform: rotate(157.5deg) translateY(-170px);">
+      TRY AGAIN
+    </div>
+
+    <div class="label" style="transform: rotate(202.5deg) translateY(-170px);">
+      TRY AGAIN
+    </div>
+
+    <div class="label" style="transform: rotate(247.5deg) translateY(-170px);">
+      MYSTERY KEYCHAIN
+    </div>
+
+    <div class="label" style="transform: rotate(292.5deg) translateY(-170px);">
+      MYSTERY KEYCHAIN
+    </div>
+
+    <div class="label" style="transform: rotate(337.5deg) translateY(-170px);">
+      20% OFF
+    </div>
+
+  </div>
+
+</div>
+
+<button class="spin-btn" onclick="spinWheel()">
+  SPIN
+</button>
+
+<p id="result"></p>
+
+<div class="reward-list">
+  10% OFF • MYSTERY KEYCHAIN • TRY AGAIN • 20% OFF
+</div>
+
+<script>
+
+let rewards = [
+
+  "10% OFF - CODE: ZA10",
+
+  "MYSTERY KEYCHAIN 🎁",
+
+  "30% OFF - CODE: ZA30",
+
+  "TRY AGAIN 😢",
+
+  "TRY AGAIN 😢",
+
+  "MYSTERY KEYCHAIN 🎁",
+
+  "MYSTERY KEYCHAIN 🎁",
+
+  "20% OFF - CODE: ZA20"
+
+];
+
+let spinning = false;
+
+let currentRotation = 0;
+
+function spinWheel(){
+
+  if(spinning) return;
+
+  spinning = true;
+
+  let wheel = document.getElementById("wheel");
+
+  let randomIndex = Math.floor(Math.random() * rewards.length);
+
+  let anglePerSlice = 360 / rewards.length;
+
+  let extraSpins = 360 * 5;
+
+  let finalAngle = (randomIndex * anglePerSlice) + (anglePerSlice / 2);
+
+  currentRotation += extraSpins + (360 - finalAngle);
+
+  wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+setTimeout(() => {
+
+  document.getElementById("result").innerHTML =
+  `YOU GOT: <br><br> ${rewards[randomIndex]}`;
+
+  // if TRY AGAIN
+  if(rewards[randomIndex].includes("TRY AGAIN")){
+
+    spinning = false;
+
+    document.getElementById("result").innerHTML +=
+    "<br><br>SPIN AGAIN!";
+
+    return;
+  }
+
+  // save reward
+  localStorage.setItem("reward", rewards[randomIndex]);
+
+  spinning = false;
+
+  // return to checkout
+  setTimeout(() => {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const returnPage = params.get("return") || "checkout.html";
+
+    window.location.href = returnPage;
+
+  },3000);
+
+},4000);
+}
+
+</script>
+
+</body>
+</html>
