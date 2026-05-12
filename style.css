@@ -95,7 +95,7 @@ header{
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: #777;
+  color: #ffffff;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -174,7 +174,7 @@ header{
 .hero-tagline {
   font-size:11px;
   letter-spacing:5px;
-  color: var(--muted);
+  color: #ffffff;
   margin-bottom:15px;
 }
 
@@ -192,7 +192,7 @@ header{
 
 .hero-sub {
   margin-top:15px;
-  color: var(--muted);
+  color: #ffffff;
   letter-spacing:3px;
 }
 
@@ -504,7 +504,7 @@ header{
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #777;
+  color: #ffffff;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1182,4 +1182,25 @@ header{
 .hero-cta{
   display:inline-block;
   text-decoration:none;
+}
+.game-btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:16px;
+  margin-bottom:15px;
+
+  background:#0f3d2e;
+  color:white;
+
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:2px;
+
+  transition:0.3s;
+}
+
+.game-btn:hover{
+  background:#1f7a5c;
+  transform:scale(1.02);
 }
